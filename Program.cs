@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using VGAFIBCursos.Data;
+using VGAFIBCursos.Utils;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -12,7 +13,8 @@ var app = builder.Build();
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<DataContext>();
-    await context.Database.EnsureCreatedAsync();
+    bool created = await context.Database.EnsureCreatedAsync();
+    if (created) await DBUtils.InitDB(context);
 }
 
 // Configure the HTTP request pipeline.

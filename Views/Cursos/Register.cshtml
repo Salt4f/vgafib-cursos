@@ -1,0 +1,19 @@
+﻿@model bool
+
+@{
+    ViewData["Title"] = "Registro";
+}
+
+<div class="container">
+    @if (Model)
+    {
+        <div class="alert alert-success" role="alert">
+            ¡Registro completado! Revisa el correo electrónico
+        </div>
+    } else
+    {
+        <div class="alert alert-danger" role="alert">
+            ¡Algo ha fallado! Asegúrate de rellenar los campos del formulario correctamente
+        </div>
+    }
+</div>

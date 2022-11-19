@@ -1,0 +1,10 @@
+﻿@model VGAFIBCursos.Models.Curso
+
+@{
+    ViewData["Title"] = "Detalles";
+}
+
+<div class="container text-center">
+    <p>Detalles del curso</p>
+    <partial name="_Form" model="@new VGAFIBCursos.Models.Estudiante(){CursoId = Model.Id, Curso = Model}"/>
+</div>

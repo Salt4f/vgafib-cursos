@@ -1,0 +1,31 @@
+﻿@model VGAFIBCursos.Models.Estudiante
+
+<form asp-controller="Cursos" asp-action="Register" method="post">
+    <input asp-for="CursoId" value="@Model.CursoId"/>
+    <div class="mb-3">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Apellidos" class="form-label"></label>
+        <input asp-for="Apellidos" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Dni" class="form-label">DNI</label>
+        <input asp-for="Dni" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Correo Electrónico</label>
+        <input asp-for="Email" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <label asp-for="NombreCompanero" class="form-label">Nombre Compañero</label>
+        <input asp-for="NombreCompanero" class="form-control" />
+    </div>
+    <div class="mb-3">
+        <input asp-for="Fiber" class="form-check-input" />
+        <label asp-for="Fiber" class="form-check-label">Estudiante de la FIB</label>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Registrarse</button>
+</form>

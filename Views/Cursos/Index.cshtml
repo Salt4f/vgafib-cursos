@@ -1,0 +1,34 @@
+﻿@model IEnumerable<VGAFIBCursos.Models.Curso>
+
+
+@{
+    ViewData["Title"] = "Cursos";
+}
+
+<div class="container">
+    <div class="row row-cols-1 row-cols-lg-3 g-1 g-lg-3">
+    @foreach (var curso in Model)
+    {
+        <div class="col">
+            <div class="card">
+                <img src="data:image/png;base64,@curso.Image" class="card-img-top"/>
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">@Html.DisplayFor(modelItem => curso.Name)</h5>
+                    <p class="card-text" style="white-space:pre-line">@Html.DisplayFor(modelItem => curso.Description)</p>
+                    <a class="btn btn-primary" asp-action="Details" asp-route-id="@curso.Id">Details</a>
+                </div>
+                @*@curso.Name
+                <div>
+                   <p style="white-space: pre-line">
+                       @Html.DisplayFor(modelItem => curso.Description)
+                   </p>
+                </div>
+                <div>
+                
+                </div>*@
+                
+            </div>
+        </div>
+    }
+    </div>
+</div>
