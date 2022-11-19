@@ -15,7 +15,7 @@ namespace VGAFIBCursos.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            return Redirect("/Cursos");
         }
 
         public IActionResult Privacy()
