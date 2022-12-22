@@ -4,6 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace VGAFIBCursos.Models
 {
+    public enum PaymentMethod
+    {
+        Transfer,
+        PayPal
+    }
+
     public class Estudiante
     {
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
@@ -29,6 +35,8 @@ namespace VGAFIBCursos.Models
         public bool Fiber { get; set; }
 
         public DateTime? FechaInscripcion { get; set; }
+
+        public PaymentMethod? PaymentMethod { get; set; }
 
         public Curso? Curso { get; set; }
         

@@ -26,6 +26,13 @@
         <input asp-for="Fiber" class="form-check-input" />
         <label asp-for="Fiber" class="form-check-label">Estudiante de la FIB</label>
     </div>
+    <div class="mb-3">
+        <label asp-for="PaymentMethod" class="form-label">Método de pago</label>
+        <select class="form-select" asp-for="PaymentMethod">
+            <option value="@PaymentMethod.Transfer">Transferencia</option>
+            <option value="@PaymentMethod.PayPal">PayPal</option>
+        </select>
+    </div>
 
     <button type="submit" class="btn btn-primary">Registrarse</button>
 </form>

@@ -5,6 +5,21 @@
 }
 
 <div class="container text-center">
-    <p>Detalles del curso</p>
+    <h1>@Model.Name</h1>
+    <p>@Model.LongDescription</p>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Aula</th>
+                <th scope="col">Horario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>@Model.Aula</td>
+                <td>@Model.Horario</td>
+            </tr>
+        </tbody>
+    </table>
     <partial name="_Form" model="@new VGAFIBCursos.Models.Estudiante(){CursoId = Model.Id, Curso = Model}"/>
 </div>
