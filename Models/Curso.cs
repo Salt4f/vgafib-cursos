@@ -29,5 +29,8 @@ namespace VGAFIBCursos.Models
 
         [JsonPropertyName("plazas")]
         public int? Plazas { get; set; }
+
+        [JsonPropertyName("pathToImage")]
+        public string? PathToImage { get; set; }
     }
 }

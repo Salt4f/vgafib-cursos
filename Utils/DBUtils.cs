@@ -11,17 +11,18 @@ namespace VGAFIBCursos.Utils
         public static async Task InitDB(DataContext context)
         {
 
-            var cartel = await File.ReadAllBytesAsync("database-init/cartel.png");
-            var base64 = Convert.ToBase64String(cartel);
-
             var cursoStr = await File.ReadAllTextAsync("database-init/curso.json", Encoding.UTF8);
-
             using (var ms = new MemoryStream(Encoding.UTF8.GetBytes(cursoStr)))
             {
-                var aux = await JsonSerializer.DeserializeAsync<Curso>(ms);
-                aux!.Image = base64;
+                var cursos = await JsonSerializer.DeserializeAsync<Curso[]>(ms);
+                foreach (var curso in cursos!)
+                {
+                    var cartel = await File.ReadAllBytesAsync("database-init/cartel.png");
+                    var base64 = Convert.ToBase64String(cartel);
 
-                await context.AddAsync(aux);
+                    curso.Image = base64;
+                    await context.AddAsync(curso);
+                }
                 await context.SaveChangesAsync();
             }
 
