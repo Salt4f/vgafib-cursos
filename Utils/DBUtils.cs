@@ -17,7 +17,7 @@ namespace VGAFIBCursos.Utils
                 var cursos = await JsonSerializer.DeserializeAsync<Curso[]>(ms);
                 foreach (var curso in cursos!)
                 {
-                    var cartel = await File.ReadAllBytesAsync("database-init/cartel.png");
+                    var cartel = await File.ReadAllBytesAsync(curso.PathToImage!);
                     var base64 = Convert.ToBase64String(cartel);
 
                     curso.Image = base64;
