@@ -69,7 +69,7 @@ namespace VGAFIBCursos.Controllers
                     return View(false);
                 }
 
-                var curso = await _context.Cursos!.FirstOrDefaultAsync<Curso?>(c => c.Id == estudiante.CursoId);
+                var curso = await _context.Cursos!.FirstOrDefaultAsync<Curso?>(c => c!.Id == estudiante.CursoId);
 
                 using (var client = new MailKit.Net.Smtp.SmtpClient())
                 {
