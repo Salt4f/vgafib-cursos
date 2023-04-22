@@ -6,7 +6,7 @@
 
 <div class="container text-center">
     <h1>@Model.Name</h1>
-    <p>@Model.LongDescription</p>
+    <p>@Html.Raw(Model.LongDescription)</p>
     <table class="table table-striped">
         <thead>
             <tr>
