@@ -77,7 +77,13 @@ namespace VGAFIBCursos.Controllers
                     var port = _config.GetValue<int>("Mail:Port");
                     var ssl = _config.GetValue<bool>("Mail:SSL");
                     var user = _config.GetValue<string>("Mail:User");
-                    var password = _config.GetValue<string>("Mail:Password");       
+                    var password = _config.GetValue<string>("Mail:Password");
+
+                    var iban = _config.GetValue<string>("Mail:Iban");
+                    var paypal = _config.GetValue<string>("Mail:PayPal");
+
+                    var precioBajo = _config.GetValue<string>("Mail:PrecioBajo");
+                    var precioAlto = _config.GetValue<string>("Mail:PrecioAlto");
 
                     await client.ConnectAsync(server, port, ssl);
                     await client.AuthenticateAsync(user, password);
@@ -97,7 +103,7 @@ namespace VGAFIBCursos.Controllers
                     else
                     {
                         mail.Body = new TextPart(MimeKit.Text.TextFormat.Plain) {
-                            Text = $"¡Hola!\n\nHemos recibido tu solicitud de inscripción al curso. Tienes tu plaza reservada durante una semana, durante la cual puedes realizar el pago de la matrícula.\n\nEl precio a pagar por la matrícula es de {(estudiante.NombreCompanero != null ? "95":"125")}€, y puedes hacer el pago a:\n\n{(estudiante.PaymentMethod == PaymentMethod.Transfer ? "ES20 3025 0011 7914 0004 0326" : "contacte@vgafib.org")}\n\nRecuerda indicar claramente tu nombre y/ o DNI al realizar el pago. Es especialmente importante que conste el nombre o DNI que se ha indicado a la hora de hacer la inscripción para poder saber qué matrícula se está pagando. Recomendamos que envíes un email con un recibo para confirmar el pago de forma segura y rápida.\n\nCualquier duda que tengas, respóndenos a este mismo correo y te atenderemos lo antes posible.\n\nRecuerda que tienes una semana para hacer efectivo el pago. En caso contrario, la reserva de tu plaza se cerrará y tendrás que contactarnos para abrirla de nuevo.\n\nUn saludo,\nProfesorado de cursos VGAFIB"
+                            Text = $"¡Hola!\n\nHemos recibido tu solicitud de inscripción al curso. Tienes tu plaza reservada durante una semana, durante la cual puedes realizar el pago de la matrícula.\n\nEl precio a pagar por la matrícula es de {(estudiante.NombreCompanero != null ? precioBajo:precioAlto)}€, y puedes hacer el pago a:\n\n{(estudiante.PaymentMethod == PaymentMethod.Transfer ? iban : paypal)}\n\nRecuerda indicar claramente tu nombre y/ o DNI al realizar el pago. Es especialmente importante que conste el nombre o DNI que se ha indicado a la hora de hacer la inscripción para poder saber qué matrícula se está pagando. Recomendamos que envíes un email con un recibo para confirmar el pago de forma segura y rápida.\n\nCualquier duda que tengas, respóndenos a este mismo correo y te atenderemos lo antes posible.\n\nRecuerda que tienes una semana para hacer efectivo el pago. En caso contrario, la reserva de tu plaza se cerrará y tendrás que contactarnos para abrirla de nuevo.\n\nUn saludo,\nProfesorado de cursos VGAFIB"
                         };
                     }
                     await client.SendAsync(mail);
